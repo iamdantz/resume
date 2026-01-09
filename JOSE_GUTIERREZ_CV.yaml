@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.6/schema.json
+cv:
+  name: José D. Gutiérrez
+  location: N.L, MX
+  email: dgutierrez.js@gmail.com
+  phone: "+52-81-1468-8787"
+  website: https://desdejupiter.me
+  social_networks:
+    - network: LinkedIn
+      username: iamdantz
+  sections:
+    experience:
+      - company: HANUFIT USA LLC
+        position: DevOps Engineer
+        location: Remote
+        start_date: 2022-02
+        end_date: present
+        highlights:
+          - Reduced application deployment times by leading the adoption of containerization with Docker and Kubernetes, which decreased build failure resolution time by 30%
+          - Improved deployment frequency and reliability through the design and maintenance of automated CI/CD pipelines, resulting in a 60% increase in delivery speed
+          - Optimized cloud infrastructure reliability and reduced operational costs by 20% by architecting end-to-end AWS solutions, resulting in 99.9% uptime
+      - company: THE FUTURES
+        position: Tech Lead
+        location: Remote
+        start_date: 2021-03
+        end_date: 2021-07
+        highlights:
+          - Increased overall team efficiency by establishing new agile workflow practices and guidelines, achieving a 20% improvement in project delivery times
+          - Ensured long-term system effectiveness by architecting a scalable and resilient microservices architecture, allowing the scaling of new clients
+      - company: THE FUTURES
+        position: Backend Developer
+        location: Remote
+        start_date: 2020-02
+        end_date: 2021-02
+        highlights:
+          - Doubled system performance and scalability through the migration of monolithic modules to a microservices architecture, significantly improving system flexibility and maintenance efficiency
+          - Optimized operational processes by creating automation scripts for cross-departmental tasks, eliminating 10+ manual hours weekly
+          - Enhanced cross-team problem-solving by conducting technical training sessions and providing support, increasing team skill proficiency scores by 15%
+    education:
+      - institution: UNEFA
+        area: Telecommunications Engineering
+        degree: B.S.
+        location: Venezuela
+        start_date: 2014
+        end_date: 2019
+    skills:
+      - label: Cloud(AWS)
+        details: VPC, RDS, S3, EC2, IAM, Lambda, EKS, EventBridge, Cloudfront, WAF, API Gateway, Cloudwatch
+      - label: DevOps
+        details: Docker, Kubernetes, Helm, Terraform, Bitbucket Pipelines, Bash, CI/CD, Grafana, Prometheus, Linux
+      - label: Development
+        details: Node.js, Express, Nestjs, MySQL, MongoDB, TypeScript, Vue
+      - label: Languages
+        details: "Spanish: Native, English: Basic"
+    Certifications:
+      - bullet: Azure AI Fundamentals (AI-900) (2025)
+design:
+  theme: engineeringresumes
+locale:
+  language: english
+settings:
+  current_date: '2026-01-09'
+  render_command:
+    typst_path: output/JOSE_GUTIERREZ_CV.typ
+    pdf_path: output/JOSE_GUTIERREZ_CV.pdf
+    markdown_path: output/JOSE_GUTIERREZ_CV.md
+    html_path: output/JOSE_GUTIERREZ_CV.html
+    png_path: output/JOSE_GUTIERREZ_CV.png
+  bold_keywords: []

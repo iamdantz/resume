@@ -1,0 +1,79 @@
+name: Release CV
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+jobs:
+    release-cv:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
+              with:
+                  fetch-depth: 0
+
+            - name: Setup Python
+              uses: actions/setup-python@v6
+              with:
+                  python-version: "3.13"
+
+            - name: Install RenderCV
+              run: pip install "rendercv[full]"
+
+            - name: Calculate Version
+              id: version
+              run: |
+                  YEAR=$(date +'%y')
+                  MONTH=$(date +'%-m')
+                  PREFIX="v${YEAR}.${MONTH}."
+                  MAX_REV=-1
+                  EXISTING_TAGS=$(git tag --list "${PREFIX}*" | sort -V)
+
+                  if [ -n "$EXISTING_TAGS" ]; then
+                    LAST_TAG=$(echo "$EXISTING_TAGS" | tail -n 1)
+                    MAX_REV=${LAST_TAG##*.}
+                  fi
+
+                  NEW_REV=$((MAX_REV + 1))
+                  NEW_VERSION="${PREFIX}${NEW_REV}"
+
+                  echo "Computed new version: $NEW_VERSION"
+                  echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+            - name: Update Date in YAML
+              run: |
+                  TODAY=$(date +'%Y-%m-%d')
+                  sed -i "s/current_date: .*/current_date: '$TODAY'/" JOSE_GUTIERREZ_CV.yaml
+
+                  if git diff --quiet JOSE_GUTIERREZ_CV.yaml; then
+                    echo "Date is already up to date."
+                  else
+                    echo "Date updated to $TODAY."
+                    git config --global user.name "github-actions[bot]"
+                    git config --global user.email "github-actions[bot]@users.noreply.github.com"
+                    git add JOSE_GUTIERREZ_CV.yaml
+                    git commit -m "chore: update CV date to $TODAY"
+                    git push origin main
+                  fi
+
+            - name: Render CV
+              run: rendercv render JOSE_GUTIERREZ_CV.yaml -nomd -nohtml -nopng
+
+            - name: Create Tag
+              run: |
+                  NEW_VERSION="${{ steps.version.outputs.version }}"
+                  git tag "$NEW_VERSION"
+                  git push origin "$NEW_VERSION"
+
+            - name: Create Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: ${{ steps.version.outputs.version }}
+                  files: output/JOSE_GUTIERREZ_CV.pdf
+                  generate_release_notes: true
