@@ -56,6 +56,9 @@ cv:
       - bullet: Azure AI Fundamentals (AI-900) (2025)
 design:
   theme: engineeringresumes
+  header:
+    connections:
+      phone_number_format: international
 locale:
   language: english
 settings:
