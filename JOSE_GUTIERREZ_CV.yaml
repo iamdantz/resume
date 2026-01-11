@@ -62,7 +62,7 @@ design:
 locale:
   language: english
 settings:
-  current_date: '2026-01-09'
+  current_date: '2026-01-11'
   render_command:
     typst_path: output/JOSE_GUTIERREZ_CV.typ
     pdf_path: output/JOSE_GUTIERREZ_CV.pdf
