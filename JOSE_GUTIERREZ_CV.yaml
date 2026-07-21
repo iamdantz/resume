@@ -53,6 +53,8 @@ cv:
       - label: Languages
         details: "Spanish: Native, English: Basic"
     Certifications:
+      - bullet: AWS Certified Solutions Architect - Associate (SAA-C03) (2026)
+      - bullet: AWS Certified Cloud Practitioner (CLF-C02) (2026)
       - bullet: Azure AI Fundamentals (AI-900) (2025)
 design:
   theme: engineeringresumes
